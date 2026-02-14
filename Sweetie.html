@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Memories 🌹</title>
+
+<style>
+
+/* ===== BACKGROUND ===== */
+body{
+    margin:0;
+    font-family: "Segoe UI", sans-serif;
+    background:linear-gradient(120deg,#2b0a1a,#5a0f2e,#8c1d40);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Floating hearts/roses effect */
+.heart{
+    position:fixed;
+    bottom:-50px;
+    font-size:20px;
+    animation: floatUp 10s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(0) rotate(0deg);}
+    100%{transform:translateY(-110vh) rotate(360deg);}
+}
+
+/* ===== HEADER ===== */
+header{
+    text-align:center;
+    padding:40px 20px;
+    font-size:2.3em;
+    background:rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px);
+}
+
+/* ===== LAYOUT ===== */
+.container{
+    width:90%;
+    margin:auto;
+}
+
+/* CARD */
+.card{
+    display:flex;
+    flex-wrap:wrap;
+    margin:30px 0;
+    background:rgba(255,255,255,0.08);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,0.6);
+    transition:.4s;
+}
+
+.card:hover{
+    transform:scale(1.03);
+}
+
+/* IMAGE SIDE */
+.media{
+    flex:1;
+    min-width:280px;
+    background:black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:350px;
+}
+
+.media img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+    cursor:pointer;
+}
+
+/* TEXT SIDE */
+.text{
+    flex:1;
+    padding:30px;
+    display:flex;
+    align-items:center;
+    font-size:1.25em;
+    line-height:1.5em;
+}
+
+/* MODAL IMAGE VIEW */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0; top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal img{
+    max-width:90%;
+    max-height:90%;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:40px;
+    font-size:30px;
+    cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+🌹 তুরে কিছু বললাম 😀 🌹
+</header>
+
+<div class="container">
+
+<!-- IMAGE 1 -->
+<div class="card">
+<div class="media">
+<img src="1picture.png" onclick="openModal(this.src)">
+</div>
+<div class="text">বন্ধু খাবি না ছাইয়া থাকবিইইই আমার দিকে ☺️
+</div>
+</div>
+
+<!-- IMAGE 2 -->
+<div class="card">
+<div class="media">
+<img src="2picture.png" onclick="openModal(this.src)">
+</div>
+<div class="text">
+এই তুই আমারে উপরে খালি রাগ করস কেন 🌸
+</div>
+</div>
+
+<!-- IMAGE 3 -->
+<div class="card">
+<div class="media">
+<img src="3picture.png" onclick="openModal(this.src)">
+</div>
+<div class="text">
+বেসি হাছিস না মায়ায় পরে গেছি ✨
+</div>
+</div>
+<!-- IMAGE 4 -->
+<div class="card">
+<div class="media">
+<img src="4picture.png" onclick="openModal(this.src)">
+</div>
+<div class="text">
+তাও হাছতেছস 🫣
+</div>
+</div>
+
+<!-- IMAGE 5 -->
+<div class="card">
+<div class="media">
+<img src="5picture.png" onclick="openModal(this.src)">
+</div>
+<div class="text">
+অলে বাবালে মন খারাপও করস দেখি  ✨
+</div>
+</div>
+<!-- IMAGE 6 -->
+<div class="card">
+<div class="media">
+<img src="6picture.png" onclick="openModal(this.src)">
+</div>
+<div class="text">
+আয় আরও কাছে আয় 😽
+
+</div>
+</div>
+
+<!-- IMAGE 7 -->
+<div class="card">
+<div class="media">
+<img src="7picture.png" onclick="openModal(this.src)">
+</div>
+<div class="text">
+আবার ভিডিও তে চলে গেলি  😤
+</div>
+</div>
+<!-- IMAGE 8 -->
+<div class="card">
+<div class="media">
+<img src="8picture.png" onclick="openModal(this.src)">
+</div>
+<div class="text">
+হইছে বুঝসছি তুই অনেক কিয়ুট 🌸
+</div>
+</div>
+
+<!-- IMAGE 9 -->
+<div class="card">
+<div class="media">
+<img src="9picture.png" onclick="openModal(this.src)">
+</div>
+<div class="text">
+আর রাগ করে থাকিস না দোস্ত 🥲
+</div>
+</div>
+<!-- Copy this block for all 9 images -->
+
+</div>
+
+
+<!-- FULLSCREEN VIEW -->
+<div id="modal" class="modal" onclick="closeModal()">
+<span class="close">✖</span>
+<img id="modalImg">
+</div>
+
+
+<script>
+
+/* Floating hearts generator */
+for(let i=0;i<20;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML=Math.random()>0.5?"❤️":"🌹";
+    h.style.left=Math.random()*100+"%";
+    h.style.fontSize=(15+Math.random()*25)+"px";
+    h.style.animationDuration=(6+Math.random()*6)+"s";
+    document.body.appendChild(h);
+}
+
+/* Modal image viewer */
+function openModal(src){
+    document.getElementById("modal").style.display="flex";
+    document.getElementById("modalImg").src=src;
+}
+function closeModal(){
+    document.getElementById("modal").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
